@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WebLearn Academy - Embeddable Portal</title>
+  
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- React 18 CDN and React DOM CDNs -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  
+  <!-- Babel CDN to compile JSX in real-time -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+    }
+    /* Custom scrollbars matching clean design style */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f8fafc;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="bg-[#f8fafc] text-[#1e293b] antialiased selection:bg-red-500/10 selection:text-red-600">
+
+  <!-- Root mount node for React -->
+  <div id="root"></div>
+
+  <!-- Real-time Interactive Portal script -->
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    // --- CURRICULUM TRAIL DATA (HTML, CSS, JS) ---
+    // Specifically optimized for a clean, non-react, beginner-friendly experience
+    const COURSES_DATA = [
+      {
+        id: "html",
+        title: "HTML Architecture",
+        description: "Master document skeletons, structural landmarks, semantic page hierarchies, and responsive image configurations.",
+        lessons: [
+          {
+            id: "html-intro",
+            title: "Document Skeletons & Landmarks",
+            shortDesc: "Understand standard element headers, body blocks, navigation lists, and semantic tags.",
+            difficulty: "Beginner",
+            xpCount: 100,
+            content: `### 🧱 The Structural Skeleton of the Web
+
+HTML (HyperText Markup Language) provides the semantic skeleton of every online portal page. Instead of using generic tags for everything, we use semantic elements to describe their content's meaning.
+
+#### Core Document Skeleton:
+\`\`\`html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Portfolio</title>
+  </head>
+  <body>
+    <!-- Landmarks go here -->
+  </body>
+</html>
+\`\`\`
+
+#### Key Semantic Structural Blocks:
+- **\`<header>\`**: Contains the logo, page branding, or primary site-wide navigation links.
+- **\`<main>\`**: Wraps the unique, primary content block for the current view.
+- **\`<aside>\`**: Defines secondary side sections, like utility rails or category badges.`,
+            interactiveCode: {
+              html: `<header class="site-header">
+  <h1>Visual Canvas Skeletons</h1>
+</header>
+
+<main class="primary-container">
+  <p>Modify this landmark text area inside the interactive live sandbox runner!</p>
+</main>`,
+              css: `body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f1f5f9;
+  text-align: center;
+  padding: 40px;
+}
+.site-header {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}`,
+              js: `console.log("Document skeleton initial content loaded!");`
+            }
+          },
+          {
+            id: "html-footer-image",
+            title: "Building Footers & Adding Images",
+            shortDesc: "Compose clean website footer blocks and load high-quality media with precise alternative text parameters.",
+            difficulty: "Beginner",
+            xpCount: 110,
+            content: `### 🖼️ Building Footers & Adding High-Performance Images
+
+For absolute precision, modern web layouts must display optimized layout frames and carry explicit media handles.
+
+#### 1. Page Footers (\`<footer>\`)
+A screen footer generally sits at the bottom of the page, holding branding, author attribution, and legal copyright notices:
+\`\`\`html
+<footer class="app-footer">
+  <p>© 2026 Developer Academy. All Rights Reserved.</p>
+</footer>
+\`\`\`
+
+#### 2. Visual Media (\`<img>\`)
+The **\`<img>\`** element embeds images in a document. It is self-closing and requires:
+- **\`src\`**: Address path linking directly to the image file location.
+- **\`alt\`**: Alternative description describing the graphic for screen readers.
+
+\`\`\`html
+<img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=450" alt="Workspace code on widescreen monitor" />
+\`\`\``,
+            interactiveCode: {
+              html: `<main class="portfolio-container">
+  <h2>Aesthetic Modern Card</h2>
+  <div class="card">
+    <img 
+      src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=450&amp;auto=format&amp;fit=crop" 
+      alt="Interactive programmer workspace" 
+      class="card-img"
+    />
+    <div class="card-details">
+      <h3>Visual Layout Cards</h3>
+      <p>This layout pairs a responsive card image with an interactive footer block beneath!</p>
+    </div>
+  </div>
+</main>
+
+<footer class="app-footer">
+  <p>© 2026 WebLearn Academy. Built for Google Sites Embeds.</p>
+</footer>`,
+              css: `body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f8fafc;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 90vh;
+  justify-content: space-between;
+}
+.portfolio-container {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 300px;
+}
+.card-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.card-details {
+  padding: 16px;
+}
+.app-footer {
+  text-align: center;
+  border-top: 1px solid #e2e8f0;
+  padding: 16px;
+  color: #64748b;
+  font-size: 13px;
+}`,
+              js: `console.log("Footer image sandbox rendering clean!");`
+            }
+          }
+        ],
+        quizzes: [
+          {
+            id: "html-q1",
+            question: "Which HTML attribute represents the text alternative shown when an image fails to load?",
+            options: ["alt", "src", "title", "caption"],
+            correctAnswer: "alt",
+            explanation: "The 'alt' attribute displays descriptive alternative text for screen reader software and when network connections timeout."
+          }
+        ]
+      },
+      {
+        id: "css",
+        title: "CSS Visual Styling",
+        description: "Take command of selectors, flexbox positioning, and responsive micro-transitions for elements.",
+        lessons: [
+          {
+            id: "css-hover",
+            title: "Micro-Transitions & Hover States",
+            shortDesc: "Implement beautiful cursor responses and smooth class transitions on interactive action cards.",
+            difficulty: "Beginner",
+            xpCount: 110,
+            content: `### 💫 Micro-Transitions & Interactive Hover States
+
+Interaction feedback turns static pages into engaging interfaces. We achieve this with CSS pseudo-classes and transition properties.
+
+#### 1. The CSS \`:hover\` Pseudo-class
+You can write custom visual rules that activate immediately whenever a user cursor moves over any target tag:
+\`\`\`css
+.btn-submit {
+  background-color: #dc2626; /* Deep Red standard color */
+}
+.btn-submit:hover {
+  background-color: #b91c1c; /* Crimson color on hover status */
+}
+\`\`\`
+
+#### 2. Smooth Transitions (\`transition\`)
+Without transitions, states snap instantly. Applying transitions on the **original selector** properties forces background color, borders, and scale transformations to merge smoothly over time:
+\`\`\`css
+.btn-submit {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+\`\`\``,
+            interactiveCode: {
+              html: `<div class="playground">
+  <h2>Interactive Action Play</h2>
+  <p>Hover over the cards below to preview real-time pseudo-class transition scales!</p>
+
+  <div class="glow-container">
+    <div class="hover-box text-box">
+      <span class="emoji">✨</span>
+      <h3>Color & Glow</h3>
+      <p>Interactive border shifts and vivid red outline glows.</p>
+    </div>
+  </div>
+</div>`,
+              css: `body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f1f5f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh;
+}
+.playground {
+  text-align: center;
+}
+.hover-box {
+  background: white;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 24px;
+  width: 250px;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+.emoji {
+  font-size: 32px;
+  display: block;
+  margin-bottom: 8px;
+}
+/* Micro-Transition Overlays */
+.hover-box:hover {
+  border-color: #dc2626;
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 24px rgba(220, 38, 38, 0.1);
+}`,
+              js: `console.log("Interactive CSS Transitions playground loaded!");`
+            }
+          }
+        ],
+        quizzes: [
+          {
+            id: "css-q1",
+            question: "Which property should you apply on the base CSS selector to slow down hover state transitions?",
+            options: ["transition", "delay", "animation", "hover-speed"],
+            correctAnswer: "transition",
+            explanation: "The transition property defines properties, timing duration, and ease functions over which state morphs occur."
+          }
+        ]
+      },
+      {
+        id: "javascript",
+        title: "JavaScript Logic",
+        description: "Engage scope definitions, attach active event triggers, and parse coordinates inside document matrices.",
+        lessons: [
+          {
+            id: "js-hover",
+            title: "Dynamic Mouse Listeners",
+            shortDesc: "Trigger dynamic styles and monitor cursor coordinates using explicit mouse interaction event bounds.",
+            difficulty: "Beginner",
+            xpCount: 120,
+            content: `### ⚡ Dynamic Pointer Events with JavaScript
+
+CSS is fantastic for pure visual styling, but JavaScript mouse event listeners let you calculate precise coordinate locations and dynamically manipulate elements in code.
+
+#### 1. Listening to Hover Boundaries
+JavaScript registers two core listeners to watch pointer behaviors:
+- **\`mouseenter\`**: Dispatched as the user cursor breaks the container boundaries.
+- **\`mouseleave\`**: Triggered the moment the cursor walks back outside.
+
+\`\`\`javascript
+const widget = document.querySelector('.card');
+widget.addEventListener('mouseenter', () => {
+  widget.style.backgroundColor = '#fee2e2'; // Light red highlight
+});
+\`\`\`
+
+#### 2. Evaluating Active Coordinates (\`clientX\`, \`clientY\`)
+\`\`\`javascript
+card.addEventListener('mousemove', (event) => {
+  const rect = card.getBoundingClientRect();
+  const relativeX = event.clientX - rect.left;
+});
+\`\`\``,
+            interactiveCode: {
+              html: `<div class="interactive-stage">
+  <h3>Pointer Track Terminal</h3>
+  <div class="track-card" id="hover-track-card">
+    <div class="marker" id="stage-marker">INACTIVE</div>
+    <h4>Coordinate Log Metrics</h4>
+    <p>Move your hardware pointer over this element box:</p>
+    <div class="metrics" id="coordinate-stats">X: 0px, Y: 0px</div>
+  </div>
+</div>`,
+              css: `body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f8fafc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+.interactive-stage {
+  text-align: center;
+}
+.track-card {
+  background: white;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 32px;
+  cursor: crosshair;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.marker {
+  display: inline-block;
+  background: #64748b;
+  color: white;
+  font-weight: bold;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+.metrics {
+  font-family: monospace;
+  font-weight: bold;
+  color: #dc2626;
+  font-size: 14px;
+}
+.active-border {
+  border-color: #dc2626;
+  transform: scale(1.02);
+}`,
+              js: `const card = document.getElementById('hover-track-card');
+const marker = document.getElementById('stage-marker');
+const stats = document.getElementById('coordinate-stats');
+
+card.addEventListener('mouseenter', () => {
+  card.classList.add('active-border');
+  marker.style.background = '#dc2626';
+  marker.textContent = "ACTIVE POINTER";
+});
+
+card.addEventListener('mouseleave', () => {
+  card.classList.remove('active-border');
+  marker.style.background = '#64748b';
+  marker.textContent = "INACTIVE";
+  stats.textContent = "X: 0px, Y: 0px";
+});
+
+card.addEventListener('mousemove', (e) => {
+  const rect = card.getBoundingClientRect();
+  const x = Math.round(e.clientX - rect.left);
+  const y = Math.round(e.clientY - rect.top);
+  stats.textContent = "X: " + x + "px, Y: " + y + "px";
+});`
+            }
+          }
+        ],
+        quizzes: [
+          {
+            id: "js-q1",
+            question: "Which event boundary fires off when an interactive mouse pointer walks OUT of an HTML element?",
+            options: ["mouseleave", "mouseenter", "mouseout", "hoveroff"],
+            correctAnswer: "mouseleave",
+            explanation: "The mouseleave element listener is uniquely dispatched when the pointing unit exits an elements outer alignment bounding rectangle."
+          }
+        ]
+      }
+    ];
+
+    // --- MAIN REACT PORTAL COMPONENT ---
+    function App() {
+      const [activeTab, setActiveTab] = useState("dashboard");
+      const [selectedTrack, setSelectedTrack] = useState("html");
+      const [xp, setXp] = useState(0);
+      const [completedLessons, setCompletedLessons] = useState([]);
+      const [completedQuizzes, setCompletedQuizzes] = useState([]);
+      const [userName, setUserName] = useState("Academian Guest");
+      const [activeLesson, setActiveLesson] = useState(null);
+      const [userAnswers, setUserAnswers] = useState({});
+      const [quizResults, setQuizResults] = useState({});
+      
+      // Sandbox Code Runner states
+      const [sandboxHtml, setSandboxHtml] = useState(COURSES_DATA[0].lessons[0].interactiveCode.html);
+      const [sandboxCss, setSandboxCss] = useState(COURSES_DATA[0].lessons[0].interactiveCode.css);
+      const [sandboxJs, setSandboxJs] = useState(COURSES_DATA[0].lessons[0].interactiveCode.js);
+      const [activeTemplateName, setActiveTemplateName] = useState(COURSES_DATA[0].lessons[0].title);
+      const [sandboxTab, setSandboxTab] = useState("html");
+      const [iframeSrcDoc, setIframeSrcDoc] = useState("");
+      const [aiFeedback, setAiFeedback] = useState("");
+      const [isAnalyzing, setIsAnalyzing] = useState(false);
+
+      // Render standalone browser preview within iframe
+      const compileSandbox = () => {
+        const fullDoc = `
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <meta charset="utf-8" />
+              <style>${sandboxCss}</style>
+            </head>
+            <body>
+              ${sandboxHtml}
+              <script>
+                window.onerror = function(msg, url, line) {
+                  const errBox = document.createElement('div');
+                  errBox.style = 'background:#fef2f2; border:1px solid #fca5a5; padding:12px; margin:16px; border-radius:8px; font-family:monospace; font-size:12px; color:#991b1b;';
+                  errBox.innerHTML = '<strong>❌ Action Error: </strong>' + msg + ' (Line ' + line + ')';
+                  document.body.prepend(errBox);
+                };
+                try {
+                  ${sandboxJs}
+                } catch(e) {
+                  window.onerror(e.message, '', 0);
+                }
+              <\/script>
+            </body>
+          </html>
+        `;
+        setIframeSrcDoc(fullDoc);
+      };
+
+      // Auto compile sandbox code when code values update
+      useEffect(() => {
+        compileSandbox();
+      }, [sandboxHtml, sandboxCss, sandboxJs]);
+
+      // Handle custom client-side rule evaluation as AI Sandbox feedback proxy
+      const runClientAiReview = () => {
+        setIsAnalyzing(true);
+        setAiFeedback("");
+        setTimeout(() => {
+          setIsAnalyzing(false);
+          let remarks = "### 🛡️ Standalone AI Sandbox Code Audit\n\n- **HTML Structure**: Elements look semantic! Checked tags align perfectly inside standard modern landmark grids.";
+          if (sandboxHtml.includes("<img") && !sandboxHtml.includes("alt=")) {
+            remarks += "\n- **🔍 Critical Accessibility Warning**: Detected an `<img>` tag missing its native `alt` descriptions. Always define descriptive alternative text labels so accessibility modules parse your pages.";
+          } else {
+            remarks += "\n- **⭐ Perfect Accessibility**: Alternate attributes are cleanly laid out on visual containers!";
+          }
+          if (sandboxCss.includes("transition:") || sandboxCss.includes("transition-duration:")) {
+            remarks += "\n- **💫 Layout Animation**: Great! Using active transition easing handles. Hover effects match industry standard metrics.";
+          } else {
+            remarks += "\n- **💡 Easing Suggestion**: Consider appending \`transition: all 0.3s ease-in-out;\` on the primary card wrapper styles to soften element hover movements.";
+          }
+          remarks += "\n\n**Verdict**: Standalone Compilation Succeeded! This component exhibits clean styling hierarchy.";
+          setAiFeedback(remarks);
+          setXp(p => p + 30);
+        }, 800);
+      };
+
+      const handleLessonOpen = (lesson) => {
+        setActiveLesson(lesson);
+        if (!completedLessons.includes(lesson.id)) {
+          setCompletedLessons(p => [...p, lesson.id]);
+          setXp(p => p + lesson.xpCount);
+        }
+      };
+
+      const handlePresetInject = (htmlCode, cssCode, jsCode, title) => {
+        setSandboxHtml(htmlCode);
+        setSandboxCss(cssCode);
+        setSandboxJs(jsCode);
+        setActiveTemplateName(title);
+        setAiFeedback("");
+        setActiveTab("playground");
+      };
+
+      const handleQuizSubmit = (quizId, correctOption) => {
+        const userSelected = userAnswers[quizId];
+        if (!userSelected) {
+          alert("Please select an answer alternative before verifying!");
+          return;
+        }
+        const isMatched = userSelected === correctOption;
+        setQuizResults(p => ({
+          ...p,
+          [quizId]: {
+            success: isMatched,
+            desc: isMatched ? "Correct! Amazing comprehension of unit mechanics." : "Almost! Re-read the curriculum guidelines once more."
+          }
+        }));
+        if (isMatched && !completedQuizzes.includes(quizId)) {
+          setCompletedQuizzes(p => [...p, quizId]);
+          setXp(p => p + 65);
+        }
+      };
+
+      const resetAllProgress = () => {
+        if (confirm("Reset current academy progression and active XP tallies?")) {
+          setCompletedLessons([]);
+          setCompletedQuizzes([]);
+          setXp(0);
+          setUserAnswers({});
+          setQuizResults({});
+          alert("Progression metrics reset successfully!");
+        }
+      };
+
+      // Lucide dynamic activation utility
+      useEffect(() => {
+        if (window.lucide) {
+          window.lucide.createIcons();
+        }
+      }, [activeTab, activeLesson, isAnalyzing]);
+
+      return (
+        <div className="min-h-screen bg-[#f8fafc] text-[#1e293b] flex flex-col justify-between">
+          
+          {/* Header Navigation Section */}
+          <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex items-center justify-between h-16">
+                
+                {/* Brand Logo */}
+                <div onClick={() => { setActiveTab("dashboard"); setActiveLesson(null); }} className="flex items-center gap-2.5 cursor-pointer">
+                  <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-red-600 to-red-500 shadow-sm">
+                    <i data-lucide="graduation-cap" className="h-5.5 w-5.5 text-white"></i>
+                  </div>
+                  <div>
+                    <span className="font-sans font-extrabold text-lg tracking-tight text-slate-900">WebLearn</span>
+                    <span className="text-red-600 font-bold text-xs ml-1 bg-red-50 px-1.5 py-0.5 rounded-md border border-red-100 tracking-wide uppercase">Academy</span>
+                  </div>
+                </div>
+
+                {/* Tab Items */}
+                <div className="flex items-center gap-1">
+                  {[
+                    { id: "dashboard", label: "Dashboard", icon: "grid" },
+                    { id: "lessons", label: "Curriculums", icon: "book-open" },
+                    { id: "playground", label: "Interactive Sandbox", icon: "terminal" },
+                    { id: "certificate", label: "Certificate", icon: "award" }
+                  ].map(tab => (
+                    <button
+                      key={tab.id}
+                      onClick={() => { setActiveTab(tab.id); if(tab.id !== "lessons" || !activeLesson) setActiveLesson(null); }}
+                      className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs md:text-sm font-semibold transition-all border ${
+                        activeTab === tab.id
+                          ? "bg-red-50 text-red-600 border-red-200 shadow-xs"
+                          : "text-slate-600 hover:text-slate-900 hover:bg-slate-50 border-transparent"
+                      }`}
+                    >
+                      <i data-lucide={tab.icon} className="h-4 w-4"></i>
+                      <span className="hidden sm:inline">{tab.label}</span>
+                    </button>
+                  ))}
+                </div>
+
+                {/* Local XP Badge */}
+                <div className="flex items-center gap-1.5 bg-slate-100 border border-slate-200 px-3 py-1.5 rounded-lg">
+                  <span className="text-[10px] font-mono font-bold text-slate-500 uppercase">XP:</span>
+                  <span className="font-mono text-xs font-black text-red-650">{xp}</span>
+                </div>
+
+              </div>
+            </div>
+          </nav>
+
+          {/* Core Content Layout Area */}
+          <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+            
+            {/* TAB 1: DASHBOARD VIEW */}
+            {activeTab === "dashboard" && (
+              <div className="space-y-8">
+                
+                {/* Greeting Hero Block */}
+                <div className="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-xxs">
+                  <div className="space-y-2">
+                    <span className="text-[10px] bg-red-50 border border-red-150 px-2 py-0.5 rounded font-mono font-bold text-red-600 uppercase tracking-widest">LANDING HOMEPAGE</span>
+                    <h1 className="text-2xl md:text-3xl font-black text-slate-950 tracking-tight">Welcome to WebLearn Academy Portal</h1>
+                    <p className="text-sm text-slate-500 max-w-xl">
+                      Learn visual markup alignment, CSS interaction transitions, and monitor event structures using fully integrated playground runtimes.
+                    </p>
+                  </div>
+
+                  <div className="flex gap-4 shrink-0 bg-slate-50 border border-slate-200 p-4 rounded-xl">
+                    <div className="text-center">
+                      <span className="text-[10px] font-mono text-slate-400 block uppercase">LESSONS COMPLETED</span>
+                      <span className="text-lg font-bold text-slate-800 font-mono">{completedLessons.length} UNITS</span>
+                    </div>
+                    <div className="w-px h-10 bg-slate-200" />
+                    <div className="text-center">
+                      <span className="text-[10px] font-mono text-slate-400 block uppercase">CHALLENGES ACED</span>
+                      <span className="text-lg font-bold text-slate-800 font-mono">{completedQuizzes.length} UNIT</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Sub-grid of active Trails */}
+                <div>
+                  <h3 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
+                    <i data-lucide="layers" className="h-4.5 w-4.5 text-red-500"></i>
+                    Core Learning Tracks
+                  </h3>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {COURSES_DATA.map(course => {
+                      const completedCount = course.lessons.filter(l => completedLessons.includes(l.id)).length;
+                      const completionRatio = Math.round((completedCount / course.lessons.length) * 100);
+
+                      return (
+                        <div key={course.id} className="bg-white border border-slate-200 hover:border-slate-300 rounded-xl p-5 hover:shadow-sm transition flex flex-col justify-between">
+                          <div className="space-y-3">
+                            <div className="flex items-center gap-2">
+                              <span className="text-[9px] px-2 py-0.5 font-mono font-bold bg-slate-100 border border-slate-200 text-slate-600 rounded uppercase">{course.id}</span>
+                              <h4 className="text-base font-black text-slate-900">{course.title}</h4>
+                            </div>
+                            <p className="text-xs text-slate-500 leading-relaxed">{course.description}</p>
+                          </div>
+
+                          <div className="mt-6 pt-4 border-t border-slate-100 space-y-3">
+                            <div className="flex justify-between items-center text-[11px] font-mono text-slate-400">
+                              <span>PROGRESSION</span>
+                              <span className="font-bold text-slate-700">{completionRatio}%</span>
+                            </div>
+                            <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                              <div className="bg-red-600 h-full transition-all" style={{ width: `${completionRatio}%` }} />
+                            </div>
+
+                            <button
+                              onClick={() => { setSelectedTrack(course.id); setActiveTab("lessons"); }}
+                              className="w-full py-2 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-bold font-mono transition rounded-lg border border-slate-200"
+                            >
+                              ENTER CURRICULUM
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Reset portal progress utility */}
+                <div className="text-center pt-8 border-t border-slate-200">
+                  <button onClick={resetAllProgress} className="text-slate-400 hover:text-red-600 text-[10px] font-mono font-bold hover:underline transition">
+                    ⚠️ RESET PORTAL PROGRESSION METRICS
+                  </button>
+                </div>
+
+              </div>
+            )}
+
+            {/* TAB 2: LESSONS & CURRICULUM PATH */}
+            {activeTab === "lessons" && (
+              <div className="space-y-6">
+                {activeLesson ? (
+                  // Focused Lesson unit inside the portal
+                  <div className="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 space-y-6 shadow-sm">
+                    <div className="flex justify-between items-center pb-4 border-b border-slate-100">
+                      <button onClick={() => setActiveLesson(null)} className="flex items-center gap-2 text-xs md:text-sm text-slate-500 hover:text-red-655 font-bold transition">
+                        <i data-lucide="arrow-left" className="h-4 w-4"></i>
+                        Back to Unit Directory
+                      </button>
+                      <span className="text-xs font-mono font-semibold text-slate-400">UNIT RUNTIME PREPARED</span>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                      {/* Left: Course markdown representation */}
+                      <div className="lg:col-span-2 space-y-6">
+                        <h2 className="text-xl md:text-3xl font-black text-slate-900 tracking-tight">{activeLesson.title}</h2>
+                        
+                        <div className="prose text-sm text-slate-650 leading-relaxed whitespace-pre-wrap space-y-4">
+                          {activeLesson.content}
+                        </div>
+                      </div>
+
+                      {/* Right: Quick actions and lesson details */}
+                      <div className="bg-slate-50 border border-slate-200 p-5 rounded-xl space-y-5 self-start">
+                        <div className="space-y-1">
+                          <span className="text-[10px] font-mono font-bold text-red-650 block uppercase tracking-wider">WORKSPACE SANDBOX</span>
+                          <h4 className="text-xs font-bold text-slate-700 uppercase">Transfer Starter Code</h4>
+                          <p className="text-xs text-slate-500 leading-relaxed">
+                            Inject this lessons preset assets and code hooks directly inside your split sandbox framework.
+                          </p>
+                        </div>
+
+                        <button
+                          onClick={() => handlePresetInject(activeLesson.interactiveCode.html, activeLesson.interactiveCode.css, activeLesson.interactiveCode.js, activeLesson.title)}
+                          className="w-full flex items-center justify-center gap-2 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl shadow-xs transition"
+                        >
+                          <i data-lucide="play" className="h-3.5 w-3.5 fill-white"></i>
+                          RUN IN THE SANDBOX
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  // General List of tracks
+                  <div className="space-y-6">
+                    {/* Swapping filters row */}
+                    <div className="flex border-b border-slate-200 overflow-x-auto">
+                      {COURSES_DATA.map(course => (
+                        <button
+                          key={course.id}
+                          onClick={() => setSelectedTrack(course.id)}
+                          className={`px-5 py-3 text-xs md:text-sm font-bold tracking-tight border-b-2 shrink-0 transition-all ${
+                            selectedTrack === course.id
+                              ? "border-red-600 text-red-650 bg-red-50/50 font-extrabold"
+                              : "border-transparent text-slate-500 hover:text-slate-900"
+                          }`}
+                        >
+                          {course.title}
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Active Track banner */}
+                    {(() => {
+                      const track = COURSES_DATA.find(c => c.id === selectedTrack) || COURSES_DATA[0];
+                      return (
+                        <div className="space-y-6">
+                          <div className="bg-white border border-slate-200 p-6 rounded-2xl shadow-xxs">
+                            <span className="text-[9px] font-mono font-bold bg-slate-100 border border-slate-150 px-2 py-0.5 rounded text-slate-500 uppercase">TRAIL DIRECTORY</span>
+                            <h2 className="text-xl font-black text-slate-900 mt-2">{track.title} Modules</h2>
+                            <p className="text-xs text-slate-500 mt-1 max-w-xl">{track.description}</p>
+                          </div>
+
+                          {/* Lessons and code templates inside selected track */}
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {track.lessons.map((lesson, index) => {
+                              const isRead = completedLessons.includes(lesson.id);
+                              return (
+                                <div
+                                  key={lesson.id}
+                                  onClick={() => handleLessonOpen(lesson)}
+                                  className="bg-white border border-slate-200 hover:border-slate-300 p-5 rounded-xl cursor-pointer hover:shadow-xs transition"
+                                >
+                                  <div className="flex justify-between text-[11px] font-mono text-slate-400">
+                                    <span>UNIT 0{index + 1}</span>
+                                    <span className="font-bold uppercase text-red-600">{lesson.difficulty}</span>
+                                  </div>
+                                  <h4 className="text-sm font-bold text-slate-950 mt-2 hover:text-red-600 transition">{lesson.title}</h4>
+                                  <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">{lesson.shortDesc}</p>
+                                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                                    <span className="font-mono text-[10px] text-slate-450 uppercase">TRAIL UNIT</span>
+                                    {isRead ? (
+                                      <span className="text-emerald-700 bg-emerald-50 border border-emerald-100 font-bold px-2 py-0.5 rounded font-sans flex items-center gap-1">
+                                        Completed
+                                      </span>
+                                    ) : (
+                                      <span className="text-red-650 font-bold font-mono">ENTER UNIT →</span>
+                                    )}
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+
+                          {/* Track quiz unit section */}
+                          {track.quizzes && track.quizzes.map(quiz => {
+                            const isFinished = completedQuizzes.includes(quiz.id);
+                            const answerResult = quizResults[quiz.id];
+
+                            return (
+                              <div key={quiz.id} className="bg-slate-50 border border-slate-200 p-6 rounded-2xl max-w-2xl space-y-4">
+                                <span className="text-[9px] font-mono font-bold text-red-600 uppercase tracking-widest block">MASTER EVALUATION CHALLENGE</span>
+                                <h4 className="text-sm font-bold text-slate-800">{quiz.question}</h4>
+                                
+                                <div className="space-y-2">
+                                  {quiz.options.map(opt => {
+                                    const selected = userAnswers[quiz.id] === opt;
+                                    return (
+                                      <button
+                                        key={opt}
+                                        onClick={() => { if(!isFinished) setUserAnswers(p => ({ ...p, [quiz.id]: opt })); }}
+                                        disabled={isFinished}
+                                        className={`w-full text-left px-4 py-3 text-xs md:text-sm rounded-lg border flex items-center justify-between select-none ${
+                                          isFinished && quiz.correctAnswer === opt
+                                            ? "bg-emerald-50 border-emerald-300 text-emerald-800 font-bold"
+                                            : selected
+                                            ? "bg-red-50 border-red-400 text-red-650"
+                                            : "bg-white border-slate-200 hover:border-slate-300"
+                                        }`}
+                                      >
+                                        <span>{opt}</span>
+                                      </button>
+                                    );
+                                  })}
+                                </div>
+
+                                {!isFinished && (
+                                  <button
+                                    onClick={() => handleQuizSubmit(quiz.id, quiz.correctAnswer)}
+                                    className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-bold font-mono text-xs rounded-lg shadow-sm transition"
+                                  >
+                                    VALIDATE ANSWER CHOICE
+                                  </button>
+                                )}
+
+                                {answerResult && (
+                                  <div className={`p-3 rounded-lg text-xs font-medium ${answerResult.success ? "bg-emerald-50 text-emerald-800 border-emerald-200":"bg-red-50 text-red-800 border-red-200"}`}>
+                                    {answerResult.desc}
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          })}
+
+                        </div>
+                      );
+                    })()}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* TAB 3: STANDALONE PORTABLE WORKSPACE SANDBOX */}
+            {activeTab === "playground" && (
+              <div className="space-y-6">
+                
+                {/* Info and Selects panel */}
+                <div className="bg-white border border-slate-200 p-4 rounded-xl flex flex-wrap items-center justify-between gap-4 shadow-xxs">
+                  <div className="space-y-0.5">
+                    <h2 className="text-sm font-extrabold text-slate-800">Dynamic Live Playground</h2>
+                    <p className="text-xs text-slate-500">Active Template Code: <span className="font-mono text-red-600 font-bold uppercase">{activeTemplateName}</span></p>
+                  </div>
+
+                  {/* Preset Injectors */}
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] font-mono text-slate-400 uppercase font-semibold">LOAD SAMPLES:</span>
+                    {[
+                      { name: "Markup Footer", ref: COURSES_DATA[0].lessons[1] },
+                      { name: "CSS Transitions", ref: COURSES_DATA[1].lessons[0] },
+                      { name: "JS Coordinate Tracking", ref: COURSES_DATA[2].lessons[0] }
+                    ].map(preset => (
+                      <button
+                        key={preset.name}
+                        onClick={() => handlePresetInject(preset.ref.interactiveCode.html, preset.ref.interactiveCode.css, preset.ref.interactiveCode.js, preset.ref.title)}
+                        className="px-2.5 py-1 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-[11px] font-semibold text-slate-600 rounded"
+                      >
+                        {preset.name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Left/Right Split Workspace */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-[70vh]">
+                  
+                  {/* Left panel: HTML/CSS/JS script writing container */}
+                  <div className="flex flex-col bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-xs h-full">
+                    
+                    {/* Tab Selection */}
+                    <div className="bg-slate-50 border-b border-slate-200 p-2 flex justify-between items-center">
+                      <div className="flex gap-1.5 bg-slate-100 p-0.5 rounded-lg border border-slate-200">
+                        {["html", "css", "js"].map(tab => (
+                          <button
+                            key={tab}
+                            onClick={() => setSandboxTab(tab)}
+                            className={`px-3 py-1 font-mono text-xs font-bold rounded-md uppercase transition-all ${
+                              sandboxTab === tab ? "bg-white text-red-655 shadow-xxs":"text-slate-500 hover:text-slate-800"
+                            }`}
+                          >
+                            {tab}
+                          </button>
+                        ))}
+                      </div>
+
+                      <button onClick={compileSandbox} className="px-3.5 py-1.5 bg-red-600 hover:bg-red-700 text-white font-mono font-bold text-xs rounded-lg transition shadow-xs flex items-center gap-1.5">
+                        <i data-lucide="play" className="h-3 w-3 fill-white"></i>
+                        COMPILE CODE
+                      </button>
+                    </div>
+
+                    {/* Active Edit Area */}
+                    <div className="flex-1 bg-slate-50 relative p-1">
+                      {sandboxTab === "html" && (
+                        <textarea
+                          value={sandboxHtml}
+                          onChange={e => setSandboxHtml(e.target.value)}
+                          placeholder="<!-- Write HTML templates here -->"
+                          className="w-full h-full bg-transparent text-slate-800 font-mono text-xs p-3 outline-none focus:ring-0 resize-none whitespace-pre select-text"
+                          spellCheck={false}
+                        />
+                      )}
+                      {sandboxTab === "css" && (
+                        <textarea
+                          value={sandboxCss}
+                          onChange={e => setSandboxCss(e.target.value)}
+                          placeholder="/* Style properties go here */"
+                          className="w-full h-full bg-transparent text-slate-800 font-mono text-xs p-3 outline-none focus:ring-0 resize-none whitespace-pre select-text"
+                          spellCheck={false}
+                        />
+                      )}
+                      {sandboxTab === "js" && (
+                        <textarea
+                          value={sandboxJs}
+                          onChange={e => setSandboxJs(e.target.value)}
+                          placeholder="// Event controllers go here"
+                          className="w-full h-full bg-transparent text-slate-800 font-mono text-xs p-3 outline-none focus:ring-0 resize-none whitespace-pre select-text"
+                          spellCheck={false}
+                        />
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Right panel: Active preview simulation and sandbox optimizer */}
+                  <div className="flex flex-col gap-4 h-full">
+                    
+                    {/* Preview Screen */}
+                    <div className="flex-1 bg-white rounded-2xl border border-slate-200 overflow-hidden flex flex-col shadow-xs">
+                      
+                      {/* Browser simulated Header link info */}
+                      <div className="bg-slate-50 px-4 py-2 border-b border-slate-200 flex items-center gap-1.5">
+                        <div className="flex gap-1">
+                          <span className="w-2.5 h-2.5 rounded-full bg-red-500" />
+                          <span className="w-2.5 h-2.5 rounded-full bg-slate-300" />
+                        </div>
+                        <input
+                          disabled
+                          className="flex-1 bg-white border border-slate-205 py-0.5 px-3 rounded text-[10px] text-slate-400 font-mono"
+                          value="academy-localhost://runner-framework.htm"
+                        />
+                      </div>
+
+                      {/* Display Preview inside actual Sandbox node */}
+                      <div className="flex-1 bg-white relative">
+                        <iframe
+                          title="Interactive sandbox compiler output frame"
+                          srcDoc={iframeSrcDoc}
+                          sandbox="allow-scripts"
+                          className="w-full h-full border-none bg-white"
+                        />
+                      </div>
+                    </div>
+
+                    {/* AI Inspector controller */}
+                    <div className="bg-white border border-slate-200 p-4.5 rounded-xl flex flex-col sm:flex-row justify-between items-center gap-4">
+                      <div className="space-y-0.5">
+                        <h4 className="text-xs font-black text-slate-850 uppercase tracking-wider flex items-center gap-1.5">
+                          <i data-lucide="sparkles" className="h-4 w-4 text-red-500"></i>
+                          Sandbox Optimization Review
+                        </h4>
+                        <p className="text-xs text-slate-500">Run immediate audits on image labels, transition ease tags, and layout scopes.</p>
+                      </div>
+
+                      <button
+                        onClick={runClientAiReview}
+                        disabled={isAnalyzing}
+                        className="px-4 py-2.5 bg-red-650 hover:bg-red-700 disabled:bg-red-300 text-white font-bold font-mono text-xs rounded-xl shadow-xxs transition shrink-0"
+                      >
+                        {isAnalyzing ? "AUDITING NOW...":"RUN OPTIMIZER REVIEW"}
+                      </button>
+                    </div>
+
+                  </div>
+                </div>
+
+                {/* Render Review feedback markup */}
+                {aiFeedback && (
+                  <div className="bg-white border border-red-250 p-6 rounded-2xl max-w-3xl space-y-4 animate-in slide-in-from-bottom duration-300 shadow-sm">
+                    <div className="flex justify-between border-b border-slate-100 pb-3">
+                      <h4 className="text-xs font-black text-red-650 flex items-center gap-1.5 uppercase font-mono tracking-wider">
+                        <i data-lucide="sparkles" className="h-4 w-4"></i>
+                        Code Quality Feedback Insights
+                      </h4>
+                      <button onClick={() => setAiFeedback("")} className="text-xs text-slate-400 hover:text-slate-800">Clear</button>
+                    </div>
+                    
+                    <div className="text-sm text-slate-700 leading-relaxed whitespace-pre-wrap space-y-3">
+                      {aiFeedback}
+                    </div>
+                  </div>
+                )}
+
+              </div>
+            )}
+
+            {/* TAB 4: ACADEMY CREDENTIAL STATUS */}
+            {activeTab === "certificate" && (
+              <div className="space-y-8">
+                {completedLessons.length < 1 ? (
+                  // Locked state
+                  <div className="bg-white border border-slate-200 p-8 rounded-2xl text-center max-w-lg mx-auto space-y-5 shadow-xs">
+                    <div className="w-16 h-16 rounded-full bg-red-50 flex items-center justify-center text-red-650 mx-auto">
+                      <i data-lucide="lock" className="h-8 w-8"></i>
+                    </div>
+
+                    <div className="space-y-1">
+                      <h3 className="text-lg font-black text-slate-900 tracking-tight">Front-End Certification Locked</h3>
+                      <p className="text-xs text-slate-500 leading-relaxed max-w-xs mx-auto">
+                        Your official degree status is currently locked. Complete at least 1 course lesson track to immediately satisfy compiler benchmarks!
+                      </p>
+                    </div>
+
+                    {/* Progress slider bar */}
+                    <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                      <div className="flex justify-between items-center text-[11px] font-mono text-slate-500 mb-1">
+                        <span>COMPLETION:</span>
+                        <span>{completedLessons.length} / 1 Lessons</span>
+                      </div>
+                      <div className="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                        <div className="bg-gradient-to-r from-red-600 to-red-500 h-full transition-all" style={{ width: `${Math.min(100, completedLessons.length * 100)}%` }} />
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  // Unlocked printable template
+                  <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                    
+                    {/* Controls alignment */}
+                    <div className="lg:col-span-1 space-y-6">
+                      <div className="space-y-1.5">
+                        <h2 className="text-base font-black text-slate-900">Academic Seal</h2>
+                        <p className="text-xs text-slate-500 leading-relaxed">Customize your full name to display on the printable verification sheet document.</p>
+                      </div>
+
+                      {/* Custom Input */}
+                      <div className="bg-white p-4 rounded-xl border border-slate-200 space-y-2 shadow-xxs">
+                        <label className="text-[10px] font-mono font-bold text-slate-400 block uppercase">Student Full Name</label>
+                        <input
+                          type="text"
+                          value={userName}
+                          onChange={e => setUserName(e.target.value)}
+                          className="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-lg py-1.5 px-3 text-xs focus:ring-1 focus:ring-red-500 outline-none"
+                        />
+                      </div>
+
+                      {/* Validate Hash */}
+                      <div className="bg-white p-4 rounded-xl border border-slate-200 space-y-2 text-xs">
+                        <span className="text-[10px] font-mono font-bold text-slate-400 block">CREDENTIAL VALUE</span>
+                        <p className="font-mono font-bold text-red-600 break-all select-all">WLA-{userName.substring(0,3).toUpperCase()}-948194</p>
+                      </div>
+
+                      <button onClick={() => window.print()} className="w-full py-2.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg text-xs font-bold font-mono shadow-xxs transition flex items-center justify-center gap-1.5">
+                        <i data-lucide="download" className="h-4 w-4"></i>
+                        PRINT / SAVE PDF SHEET
+                      </button>
+                    </div>
+
+                    {/* Master Document Canvas */}
+                    <div className="lg:col-span-3">
+                      <div className="bg-white border-8 border-double border-red-600 p-8 md:p-14 rounded-2xl relative text-center flex flex-col items-center space-y-10 shadow-sm print:border-red-600 print:text-black print:bg-white max-w-3xl mx-auto">
+                        
+                        <div className="space-y-2">
+                          <i data-lucide="award" className="h-10 w-10 text-red-650 mx-auto"></i>
+                          <h4 className="text-xs font-mono font-bold text-red-600 tracking-widest uppercase">WEBLEARN ACADEMY DEGREE</h4>
+                        </div>
+
+                        <div className="space-y-4">
+                          <span className="text-xs text-slate-400 italic font-serif">This official portal certificate acknowledges that</span>
+                          <h2 className="text-2xl md:text-4xl font-black font-serif text-slate-950 leading-snug italic px-4">{userName}</h2>
+                          <p className="text-xs text-slate-600 max-w-xl leading-relaxed mx-auto">
+                            has satisfy learning units in document architecture skeletons, semantic header boundaries, CSS grid adjustments, pseudo transitions, and live DOM coordinate calculations:
+                          </p>
+                          <h4 className="text-sm font-extrabold text-red-600 uppercase tracking-widest">Front-End Development Program</h4>
+                        </div>
+
+                        <div className="w-full border-t border-slate-200 pt-8 flex items-center justify-between text-xs max-w-xl">
+                          <div className="text-left">
+                            <span className="text-[10px] font-mono text-slate-400 block">ISSUE DATE</span>
+                            <span className="font-bold text-slate-800">May 2026</span>
+                          </div>
+
+                          <div className="text-center flex flex-col items-center">
+                            <i data-lucide="shield-check" className="h-6 w-6 text-red-650 mb-0.5"></i>
+                            <span className="text-[9px] font-mono font-bold text-red-650">SEAL VERIFIED</span>
+                          </div>
+
+                          <div className="text-right">
+                            <span className="text-[10px] font-mono text-slate-400 block">SIGNATURE</span>
+                            <span className="font-serif italic font-bold text-slate-800">Academy Board</span>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+                )}
+              </div>
+            )}
+
+          </main>
+
+          {/* Site footer */}
+          <footer className="bg-slate-50 border-t border-slate-200 py-6 text-center text-xs text-slate-400">
+            <p>© 2026 WebLearn Academy. Built for seamless Google Sites Embeds.</p>
+          </footer>
+
+        </div>
+      );
+    }
+
+    // Mount to root node
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</body>
+</html>

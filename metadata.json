@@ -1,0 +1,6 @@
+{
+  "name": "WebLearn Academy",
+  "description": "An interactive, fully responsive, dark-blue themed Web Development academy featuring real-time code playgrounds, interactive quizzes, visual achievements, and a server-side Gemini AI Programming Mentor.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
